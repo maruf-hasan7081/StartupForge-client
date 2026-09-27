@@ -19,9 +19,9 @@ export default function ImagePicker({
 
   return (
     <div className="space-y-2">
-      <p className="text-sm text-[var(--color-muted)]">{label}</p>
+      <p className="text-sm text-[var(--muted)]">{label}</p>
       <input
-        className="w-full rounded-xl border border-white/10 bg-[var(--color-panel)] px-3 py-2"
+        className="input-field"
         type="url"
         placeholder="Image URL (https://...)"
         value={value}
@@ -30,8 +30,8 @@ export default function ImagePicker({
       {hasImgbbKey() ? (
         <input type="file" accept="image/*" onChange={onFile} />
       ) : (
-        <p className="text-xs text-[var(--color-muted)]">
-          Optional: add <code className="text-[var(--color-accent)]">VITE_IMGBB_KEY</code> in client/.env to enable file upload.
+        <p className="text-xs text-[var(--muted)]">
+          Optional: add <code className="text-[var(--accent)]">VITE_IMGBB_KEY</code> in client/.env to enable file upload.
         </p>
       )}
       {value && (

@@ -18,9 +18,9 @@ export default function AdminOverview() {
           ["Total Opportunities", stats.opportunities],
           ["Total Revenue", `$${stats.revenue}`],
         ].map(([label, value]) => (
-          <div key={label} className="rounded-xl border border-white/10 bg-black/20 p-4">
-            <p className="text-sm text-[var(--color-muted)]">{label}</p>
-            <p className="mt-2 text-2xl font-bold text-[var(--color-accent)]">{value}</p>
+          <div key={label} className="stat-card">
+            <p className="text-sm text-[var(--muted)]">{label}</p>
+            <p className="mt-2 text-2xl font-bold text-[var(--accent)]">{value}</p>
           </div>
         ))}
       </div>

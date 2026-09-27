@@ -38,27 +38,29 @@ export default function Register() {
 
   return (
     <div className="mx-auto max-w-md px-4 py-16">
-      <h1 className="font-display text-3xl font-bold">Create Account</h1>
-      <form className="mt-6 space-y-4" onSubmit={onSubmit}>
-        <input className="w-full rounded-xl border border-white/10 bg-[var(--color-panel)] px-3 py-2" placeholder="Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
-        <input className="w-full rounded-xl border border-white/10 bg-[var(--color-panel)] px-3 py-2" type="email" placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
-        <input className="w-full rounded-xl border border-white/10 bg-[var(--color-panel)] px-3 py-2" type="password" placeholder="Password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required />
-        <select className="w-full rounded-xl border border-white/10 bg-[var(--color-panel)] px-3 py-2" value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })}>
-          <option value="founder">Founder</option>
-          <option value="collaborator">Collaborator</option>
-        </select>
-        <ImagePicker
-          label="Profile image (URL or file upload)"
-          value={form.image}
-          onChange={(url) => setForm((prev) => ({ ...prev, image: url }))}
-          onError={setError}
-        />
-        {error && <p className="text-sm text-red-400">{error}</p>}
-        <Button type="submit" className="w-full">Register</Button>
-      </form>
-      <p className="mt-4 text-sm text-[var(--color-muted)]">
-        Already have an account? <Link className="text-[var(--color-accent)]" to="/login">Login</Link>
-      </p>
+      <div className="glass-panel rounded-3xl p-8">
+        <h1 className="font-display text-3xl font-bold">Create account</h1>
+        <form className="mt-6 space-y-4" onSubmit={onSubmit}>
+          <input className="input-field" placeholder="Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
+          <input className="input-field" type="email" placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
+          <input className="input-field" type="password" placeholder="Password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required />
+          <select className="input-field" value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })}>
+            <option value="founder">Founder</option>
+            <option value="collaborator">Collaborator</option>
+          </select>
+          <ImagePicker
+            label="Profile image"
+            value={form.image}
+            onChange={(url) => setForm((prev) => ({ ...prev, image: url }))}
+            onError={setError}
+          />
+          {error && <p className="text-sm text-red-400">{error}</p>}
+          <Button type="submit" className="w-full">Register</Button>
+        </form>
+        <p className="mt-4 text-sm text-[var(--muted)]">
+          Already have an account? <Link className="text-[var(--accent)]" to="/login">Login</Link>
+        </p>
+      </div>
     </div>
   );
 }

@@ -20,12 +20,14 @@ export default function PaymentSuccess() {
   if (loading) return <Loader label="Confirming payment..." />;
 
   return (
-    <div className="mx-auto max-w-lg px-4 py-16 text-center">
-      <h1 className="font-display text-3xl font-bold">Payment Successful</h1>
-      <p className="mt-3 text-[var(--color-muted)]">{message}</p>
-      <Link to="/dashboard/founder" className="mt-6 inline-block">
-        <Button>Go to Founder Dashboard</Button>
-      </Link>
+    <div className="page-container max-w-lg text-center">
+      <div className="glass-panel rounded-3xl p-8">
+        <h1 className="page-title">Payment Successful</h1>
+        <p className="mt-3 text-[var(--muted)]">{message}</p>
+        <Link to="/dashboard/founder" className="mt-6 inline-block">
+          <Button>Go to Founder Dashboard</Button>
+        </Link>
+      </div>
     </div>
   );
 }

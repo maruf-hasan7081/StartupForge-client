@@ -55,6 +55,7 @@ export function AuthProvider({ children }) {
     });
     if (result.error) throw new Error(result.error.message);
     await syncJwt();
+    await api.patch("/api/users/role", { role });
   };
 
   const loginWithGoogle = async () => {

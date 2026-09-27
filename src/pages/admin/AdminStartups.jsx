@@ -13,10 +13,10 @@ export default function AdminStartups() {
       <h1 className="font-display text-2xl font-bold">Manage Startups</h1>
       <div className="mt-6 space-y-3">
         {startups.map((startup) => (
-          <div key={startup._id} className="flex items-center justify-between rounded-xl border border-white/10 p-4">
+          <div key={startup._id} className="panel-row flex items-center justify-between">
             <div>
               <p className="font-semibold">{startup.startup_name}</p>
-              <p className="text-sm text-[var(--color-muted)]">{startup.industry} · {startup.status}</p>
+              <p className="text-sm text-[var(--muted)]">{startup.industry} · {startup.status}</p>
             </div>
             <div className="flex gap-2">
               <Button onClick={() => api.patch(`/api/admin/startups/${startup._id}/approve`).then(load)}>Approve</Button>

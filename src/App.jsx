@@ -20,14 +20,19 @@ import ManageOpportunities from "./pages/founder/ManageOpportunities";
 import FounderApplications from "./pages/founder/FounderApplications";
 import CollaboratorOverview from "./pages/collaborator/CollaboratorOverview";
 import MyApplications from "./pages/collaborator/MyApplications";
+import BookmarkedStartups from "./pages/collaborator/BookmarkedStartups";
 import AdminOverview from "./pages/admin/AdminOverview";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminStartups from "./pages/admin/AdminStartups";
 import AdminTransactions from "./pages/admin/AdminTransactions";
+import AddOpportunity from "./pages/founder/AddOpportunity";
+import CompleteRole from "./pages/CompleteRole";
+import RoleGuard from "./routes/RoleGuard";
 
 const founderLinks = [
   { to: "/dashboard/founder", label: "Overview", end: true },
   { to: "/dashboard/founder/startup", label: "My Startup" },
+  { to: "/dashboard/founder/add-opportunity", label: "Add Opportunity" },
   { to: "/dashboard/founder/opportunities", label: "Manage Opportunities" },
   { to: "/dashboard/founder/applications", label: "Applications" },
   { to: "/profile", label: "Profile" },
@@ -36,6 +41,7 @@ const founderLinks = [
 const collaboratorLinks = [
   { to: "/dashboard/collaborator", label: "Overview", end: true },
   { to: "/dashboard/collaborator/applications", label: "My Applications" },
+  { to: "/dashboard/collaborator/bookmarks", label: "Bookmarks" },
   { to: "/profile", label: "Profile" },
 ];
 
@@ -50,6 +56,7 @@ export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <RoleGuard>
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
@@ -59,6 +66,7 @@ export default function App() {
             <Route path="/opportunities/:id" element={<OpportunityDetails />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/complete-role" element={<PrivateRoute><CompleteRole /></PrivateRoute>} />
             <Route path="/payment-success" element={<PaymentSuccess />} />
             <Route
               path="/profile"
@@ -82,6 +90,7 @@ export default function App() {
             >
               <Route index element={<FounderOverview />} />
               <Route path="startup" element={<MyStartup />} />
+              <Route path="add-opportunity" element={<AddOpportunity />} />
               <Route path="opportunities" element={<ManageOpportunities />} />
               <Route path="applications" element={<FounderApplications />} />
             </Route>
@@ -96,6 +105,7 @@ export default function App() {
             >
               <Route index element={<CollaboratorOverview />} />
               <Route path="applications" element={<MyApplications />} />
+              <Route path="bookmarks" element={<BookmarkedStartups />} />
             </Route>
 
             <Route
@@ -115,6 +125,7 @@ export default function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
+        </RoleGuard>
       </BrowserRouter>
     </AuthProvider>
   );

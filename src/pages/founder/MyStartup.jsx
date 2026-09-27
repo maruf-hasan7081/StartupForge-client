@@ -29,7 +29,7 @@ export default function MyStartup() {
 
   const save = async () => {
     if (!form.logo?.trim()) {
-      setError("Startup logo URL or uploaded image is required.");
+      setError("Startup logo URL or upload is required.");
       return;
     }
     setError("");
@@ -55,18 +55,13 @@ export default function MyStartup() {
     <div>
       <h1 className="font-display text-2xl font-bold">My Startup</h1>
       <div className="mt-6 grid gap-3 md:grid-cols-2">
-        <input className="rounded-xl border border-white/10 bg-black/20 px-3 py-2" placeholder="Startup Name" value={form.startup_name} onChange={(e) => setForm({ ...form, startup_name: e.target.value })} />
-        <input className="rounded-xl border border-white/10 bg-black/20 px-3 py-2" placeholder="Industry" value={form.industry} onChange={(e) => setForm({ ...form, industry: e.target.value })} />
-        <input className="rounded-xl border border-white/10 bg-black/20 px-3 py-2" placeholder="Funding Stage" value={form.funding_stage} onChange={(e) => setForm({ ...form, funding_stage: e.target.value })} />
-        <input className="rounded-xl border border-white/10 bg-black/20 px-3 py-2" type="number" placeholder="Team Size Needed" value={form.team_size_needed} onChange={(e) => setForm({ ...form, team_size_needed: Number(e.target.value) })} />
-        <textarea className="md:col-span-2 rounded-xl border border-white/10 bg-black/20 px-3 py-2" rows={4} placeholder="Description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
+        <input className="input-field" placeholder="Startup Name" value={form.startup_name} onChange={(e) => setForm({ ...form, startup_name: e.target.value })} />
+        <input className="input-field" placeholder="Industry" value={form.industry} onChange={(e) => setForm({ ...form, industry: e.target.value })} />
+        <input className="input-field" placeholder="Funding Stage" value={form.funding_stage} onChange={(e) => setForm({ ...form, funding_stage: e.target.value })} />
+        <input className="input-field" type="number" placeholder="Team Size Needed" value={form.team_size_needed} onChange={(e) => setForm({ ...form, team_size_needed: Number(e.target.value) })} />
+        <textarea className="input-field md:col-span-2" rows={4} placeholder="Description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
         <div className="md:col-span-2">
-          <ImagePicker
-            label="Startup logo (URL or file upload)"
-            value={form.logo}
-            onChange={(url) => setForm((prev) => ({ ...prev, logo: url }))}
-            onError={setError}
-          />
+          <ImagePicker label="Startup logo" value={form.logo} onChange={(url) => setForm((prev) => ({ ...prev, logo: url }))} onError={setError} />
         </div>
       </div>
       <div className="mt-4 flex gap-3">
@@ -74,7 +69,7 @@ export default function MyStartup() {
         {startupId && <Button variant="danger" onClick={remove}>Delete Startup</Button>}
       </div>
       {error && <p className="mt-3 text-sm text-red-400">{error}</p>}
-      {message && <p className="mt-3 text-sm text-[var(--color-accent)]">{message}</p>}
+      {message && <p className="mt-3 text-sm text-[var(--accent)]">{message}</p>}
     </div>
   );
 }
