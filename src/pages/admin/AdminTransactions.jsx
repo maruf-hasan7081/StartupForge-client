@@ -13,10 +13,10 @@ export default function AdminTransactions() {
       <h1 className="font-display text-2xl font-bold">Transactions</h1>
       <div className="mt-6 space-y-3">
         {transactions.map((tx) => (
-          <div key={tx._id} className="rounded-xl border border-white/10 p-4">
+          <div key={tx._id} className="panel-row">
             <p className="font-semibold">{tx.user_email}</p>
-            <p className="text-sm text-[var(--color-muted)]">${tx.amount} · {tx.payment_status}</p>
-            <p className="text-xs text-[var(--color-muted)]">{new Date(tx.paid_at).toLocaleString()}</p>
+            <p className="text-sm text-[var(--muted)]">${tx.amount} · {tx.payment_status}</p>
+            <p className="text-xs text-[var(--muted)]">{new Date(tx.paid_at).toLocaleString()}</p>
           </div>
         ))}
       </div>
