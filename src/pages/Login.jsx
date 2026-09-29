@@ -27,6 +27,12 @@ export default function Login() {
       navigate(location.state?.from?.pathname || "/dashboard");
     } catch (err) {
       const msg = err.message || "Login failed";
+      if (msg.toLowerCase().includes("fetch")) {
+        setError(
+          "Cannot reach the API. Start the server (cd server && npm run dev) and refresh. Use one client tab on the port shown by Vite.",
+        );
+        return;
+      }
       setError(
         msg.toLowerCase().includes("not found")
           ? "No account with this email. Register first, or use admin after npm run seed."
