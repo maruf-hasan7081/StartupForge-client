@@ -10,24 +10,22 @@ export default function BrowseOpportunities() {
   const [workType, setWorkType] = useState("");
   const [industry, setIndustry] = useState("");
   const [page, setPage] = useState(1);
+  const [query, setQuery] = useState({ search: "", work_type: "", industry: "" });
   const [data, setData] = useState({ opportunities: [], pagination: { totalPages: 1 } });
   const [loading, setLoading] = useState(true);
 
-  const load = () => {
+  useEffect(() => {
     setLoading(true);
     api
       .get("/api/opportunities", {
-        params: { page, search, work_type: workType, industry },
+        params: { page, ...query },
       })
       .then((res) => {
         setData(res.data);
         setLoading(false);
-      });
-  };
-
-  useEffect(() => {
-    load();
-  }, [page]);
+      })
+      .catch(() => setLoading(false));
+  }, [page, query]);
 
   return (
     <div className="page-container">
@@ -47,7 +45,15 @@ export default function BrowseOpportunities() {
           <option value="Climate">Climate</option>
           <option value="Health">Health</option>
         </select>
-        <Button onClick={() => { setPage(1); load(); }}>Apply Filters</Button>
+        <Button
+          type="button"
+          onClick={() => {
+            setQuery({ search, work_type: workType, industry });
+            setPage(1);
+          }}
+        >
+          Apply Filters
+        </Button>
       </div>
 
       {loading ? (

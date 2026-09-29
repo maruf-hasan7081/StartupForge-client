@@ -46,6 +46,7 @@ export default function Navbar() {
           {user ? (
             <>
               <Link to="/dashboard" className="hidden text-sm font-medium sm:inline">Dashboard</Link>
+              <Link to="/profile" className="hidden text-sm font-medium sm:inline">Profile</Link>
               <Button variant="ghost" className="hidden sm:inline-flex" onClick={logout}>Logout</Button>
             </>
           ) : (
@@ -67,6 +68,7 @@ export default function Navbar() {
             {user ? (
               <>
                 <Link to="/dashboard" onClick={() => setOpen(false)}>Dashboard</Link>
+                <Link to="/profile" onClick={() => setOpen(false)}>Profile</Link>
                 <button type="button" onClick={() => { logout(); setOpen(false); }}>Logout</button>
               </>
             ) : (
