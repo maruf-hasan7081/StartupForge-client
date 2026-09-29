@@ -50,6 +50,7 @@ const adminLinks = [
   { to: "/dashboard/admin/users", label: "Manage Users" },
   { to: "/dashboard/admin/startups", label: "Manage Startups" },
   { to: "/dashboard/admin/transactions", label: "Transactions" },
+  { to: "/profile", label: "Profile" },
 ];
 
 export default function App() {
@@ -67,7 +68,14 @@ export default function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/complete-role" element={<PrivateRoute><CompleteRole /></PrivateRoute>} />
-            <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route
+              path="/payment-success"
+              element={
+                <PrivateRoute roles={["founder"]}>
+                  <PaymentSuccess />
+                </PrivateRoute>
+              }
+            />
             <Route
               path="/profile"
               element={
